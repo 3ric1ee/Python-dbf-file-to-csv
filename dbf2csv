@@ -1,0 +1,11 @@
+import csv
+import pandas as pd
+import geopandas
+import glob
+
+filepaths=glob.glob(r"D:/filepaths")
+for filepath in filepaths:
+    if filepath.endswith('.dbf'):
+        df = geopandas.read_file(filepath,error_bad_lines=False,encoding='utf-8')
+        dt= pd.DataFrame(df)
+        dt.to_csv(filepath[:-4]+ '.csv',sep=' ',encoding='utf-8')
